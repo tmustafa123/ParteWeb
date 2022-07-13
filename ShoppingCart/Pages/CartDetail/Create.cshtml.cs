@@ -27,8 +27,10 @@ namespace ShoppingCart.Pages.CartDetail
         }
         public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid)
+            // only cart with cart items are allowed
+            if (!ModelState.IsValid || AreAdded.Count == 0)
             {
+                ModelState.AddModelError(string.Empty, "Invalid Model");
                 return Page();
             }
             

@@ -16,7 +16,7 @@ namespace ShoppingCart.Pages.CartDetail
         {
             // group the cart items for a cart
             // compute the number of items in each cart
-            var results = _context.CartItems.GroupBy(
+            var cartsWithCartItems = _context.CartItems.GroupBy(
                     p => p.CartId,
                     (key, g) => new Cart { 
                         Id = key,
@@ -25,7 +25,7 @@ namespace ShoppingCart.Pages.CartDetail
                         Count = g.Count(),
                     });
 
-            Carts = results;
+            Carts = cartsWithCartItems;
         }
     }
 }

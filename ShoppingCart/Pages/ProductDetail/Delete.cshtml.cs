@@ -17,7 +17,6 @@ namespace ShoppingCart.Pages.ProductDetail
         public Product Product { get; set; }
         public void OnGet(int id)
         {
-            // you passed the id in the asp-route-id
             Product = _context.Products.SingleOrDefault(item => item.ProductId == id);
         }
 
