@@ -1,0 +1,54 @@
+﻿@page
+@model ShoppingCart.Pages.CartDetail.CreateModel
+@{
+     ViewData["title"] = "Shopping Cart";
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6"> 
+            <h2 class="text-primary">Add Cart</h2>
+        </div>
+    </div>
+    <br /><br />
+    <form method="post">
+        <div class="mb-3 w-50">
+            <label asp-for="@Model.Name"></label>
+            <input asp-for="@Model.Name" class="form-control" />
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3 w-50">
+            <label asp-for="@Model.Description"></label>
+            <input asp-for="@Model.Description" class="form-control" />
+        </div>
+        <br />
+        <h3>Cart Items</h3>
+        <br />
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Add</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var product in Model.Products)
+                {
+                <tr>
+                    <td width="50%">@product.Name</td>
+                    <td width="50%">@product.Description</td>
+                    <td>
+                        <input name="AreAdded" type="checkbox" value="@product.ProductId" />
+                    </td>
+                </tr>   
+                }      
+            </tbody>
+        </table>
+        <button type="submit" class="btn-primary btn-primary" style="width:150px;">Submit</button>
+    </form>
+</div>  
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

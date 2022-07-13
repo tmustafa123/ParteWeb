@@ -1,0 +1,46 @@
+﻿@page
+@model ShoppingCart.Pages.ProductDetail.IndexModel
+@{
+    ViewData["title"] = "Manage Products";
+    
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6"> 
+            <h2 class="text-primary"> Manage Products</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-page="Create" class="btn btn-primary"> 
+               <i class="bi bi-plus-square"></i> Create Product </a>
+        </div>
+    </div>
+    <br /><br />
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Desciption</th>
+                <th>Manage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Products)
+            {
+            <tr>
+                <td class="w-50">@item.Name</td>
+                <td class="w-50">@item.Description</td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-page="Edit" asp-route-id="@item.ProductId" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a asp-page="Delete" asp-route-id="@item.ProductId" class="btn btn-danger mx-2">
+                            <i class="bi bi-trash3-fill"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>   
+            }      
+        </tbody>
+    </table>
+</div>  
